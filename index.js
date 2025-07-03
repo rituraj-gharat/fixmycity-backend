@@ -6,6 +6,11 @@ require("dotenv").config();
 const app = express();
 const prisma = new PrismaClient();
 
+prisma.$connect()
+  .then(() => console.log("✅ Connected to Supabase DB"))
+  .catch((err) => console.error("❌ Supabase DB connection failed:", err));
+
+
 app.use(cors());
 app.use(express.json());
 
