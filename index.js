@@ -11,6 +11,9 @@ app.use(express.json());
 
 app.post("/api/report", async (req, res) => {
   const { category, description, latitude, longitude, photoUrl } = req.body;
+  console.log("Full payload:", req.body);
+  console.log("Incoming photoUrl:", photoUrl);
+  
   try {
     const report = await prisma.issue.create({
       data: {
