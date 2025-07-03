@@ -13,7 +13,11 @@ app.post("/api/report", async (req, res) => {
   const { category, description, latitude, longitude, photoUrl } = req.body;
   console.log("Full payload:", req.body);
   console.log("Incoming photoUrl:", photoUrl);
-  
+  console.log("Payload received at backend:", {
+    category, description, latitude, longitude, photoUrl
+  });
+
+
   try {
     const report = await prisma.issue.create({
       data: {
@@ -31,7 +35,7 @@ app.post("/api/report", async (req, res) => {
   }
 });
 
-app.get("/api/issues", async (req, res) => {
+app.get("/api/issues", async (_, res) => {
   try {
     const issues = await prisma.issue.findMany({
       orderBy: { createdAt: "desc" },
